@@ -6,4 +6,3 @@ __pycache__/
 results/
 data/*.cache
 .DS_Store
-.venv/
