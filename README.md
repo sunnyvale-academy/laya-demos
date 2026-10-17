@@ -24,11 +24,19 @@ laya-demos/
 │   ├── rubik_laya_agent.py         # Singmaster move policy & heuristic search agent
 │   └── rubik_benchmark.py          # Search velocity & node evaluation benchmark
 │
+├── lab04_hardware_benchmarking/    # 💻 Lab 04: Hardware Profiling (CPU vs Apple GPU / MPS)
+│   ├── 01_single_request_latency.py# Single-request latency profiling on Apple Silicon
+│   ├── 02_batch_throughput.py      # Batch scaling and saturation benchmark
+│   ├── 03_question_scaling.py      # Multi-head question complexity scaling
+│   ├── benchmark_cpu_vs_gpu.py     # Comprehensive benchmark suite & chart plotter
+│   └── hardware_benchmark_results.png # Generated comparison visualization
+│
 ├── common/                         # 🛠️ Shared Utilities
 │   ├── cube_engine.py              # 3x3 Rubik's cube simulator & Singmaster engine
+│   ├── hardware_profile.py         # Apple Silicon & GPU hardware detection
 │   ├── mock_engine.py              # Live / Mock adapters for Laya and LLM models
 │   └── visualizer.py               # Rich terminal tables, ANSI nets & plotters
-└── tests/                          # 🧪 Unit Test Suite
+└── tests/                          # 🧪 Unit Test Suite (10/10 Passing)
 ```
 
 ---
@@ -54,13 +62,10 @@ pip install -r requirements.txt
 
 ### [Lab 01: How Laya Works (Basics)](file:///Users/denismaggiorotto/Documents/Progetti/Sunnyvale/repos/laya-demos/lab01_laya_basics/README.md)
 Explore the core foundations of System 1 non-autoregressive decision models:
-* **Zero Token Generation Overhead**: Predictions execute in a single bidirectional encoder pass (~33ms) directly through specialized classification and ordinal heads.
-* **Three Typed Question Primitives**:
-  * `choice`: Categorical multi-class routing
-  * `noul`: Binary boolean decisions (`true` / `false`)
-  * `score`: Calibrated ordinal ratings
+* **Zero Token Generation Overhead**: Predictions execute in a single bidirectional encoder pass directly through specialized classification and ordinal heads.
+* **Three Typed Question Primitives**: `choice` (categorical enum), `noul` (boolean), `score` (calibrated ordinal ranking).
 * **Pydantic Integration**: Maps JSON Schema properties directly to output layers, guaranteeing 100% schema conformance.
-* **Calibrated Probabilities**: Uses RLCD (Reinforcement Learning with Calibrated Decisions) against strictly proper scoring rules.
+* **Calibrated Probabilities**: Uses RLCD (proper scoring rules) with dynamic criteria extraction.
 
 ```bash
 python3 lab01_laya_basics/01_system1_foundations.py
@@ -92,8 +97,8 @@ python3 lab02_llm_vs_laya_benchmark/benchmark_comparison.py
 ### [Lab 03: Solving the Rubik's Cube with Laya](file:///Users/denismaggiorotto/Documents/Progetti/Sunnyvale/repos/laya-demos/lab03_rubik_cube_solver/README.md)
 Demonstrates Laya in an interactive, sequential reinforcement learning / control environment:
 * **State Representation**: 54 facelet stickers across 6 faces ($U, D, F, B, L, R$).
-* **Action Space**: Singmaster notation moves ($U, U', U2, D, D', D2, F, F', F2, B, B', B2, L, L', L2, R, R', R2$).
-* **Heuristic Search**: Laya's sub-35ms evaluation enables real-time tree expansion (Best-First Search) that would take 10+ seconds per move with traditional generative LLMs.
+* **Action Space**: Singmaster notation moves (`U`, `U'`, `F`, `F'`, `R`, `R'`, `D`, `D'`, `L`, `L'`, `B`, `B'`).
+* **Heuristic Search**: Laya's sub-35ms evaluation enables real-time tree expansion (Best-First Search).
 * **Terminal Visualizer**: Real-time 2D unfolded cross layout with ANSI color blocks.
 
 ```bash
@@ -102,6 +107,29 @@ python3 lab03_rubik_cube_solver/rubik_interactive_demo.py 3
 
 # Run search velocity benchmark
 python3 lab03_rubik_cube_solver/rubik_benchmark.py
+```
+
+---
+
+### [Lab 04: Hardware Benchmarking — Apple Silicon CPU vs GPU (MPS)](file:///Users/denismaggiorotto/Documents/Progetti/Sunnyvale/repos/laya-demos/lab04_hardware_benchmarking/README.md)
+Deep profiling on Apple Silicon (e.g. **Apple M4 Max** with Unified Memory Architecture):
+
+| Metric / Dimension | Apple Silicon CPU | Apple Silicon GPU (MPS) | MPS Advantage |
+| :--- | :--- | :--- | :--- |
+| **Single p50 Latency** | **~223.1 ms** | **~74.0 ms** | 🚀 **~3.0x Faster** |
+| **Single p95 Latency** | **~254.1 ms** | **~79.9 ms** | 🚀 **~3.2x Faster** |
+| **Single Throughput** | **~4.5 req/s** | **~13.4 req/s** | 🚀 **~3.0x Higher** |
+| **8-Head Parallel Latency** | **~205.9 ms** | **~69.0 ms** | 🚀 **~3.0x Faster** |
+| **Memory Bus Overhead** | **0 ms (UMA)** | **0 ms (UMA)** | **Shared Unified RAM** |
+
+```bash
+# Run individual benchmarks
+python3 lab04_hardware_benchmarking/01_single_request_latency.py
+python3 lab04_hardware_benchmarking/02_batch_throughput.py
+python3 lab04_hardware_benchmarking/03_question_scaling.py
+
+# Run full hardware suite & export chart
+python3 lab04_hardware_benchmarking/benchmark_cpu_vs_gpu.py
 ```
 
 ---
