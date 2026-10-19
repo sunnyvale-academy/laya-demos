@@ -31,12 +31,20 @@ laya-demos/
 │   ├── benchmark_cpu_vs_gpu.py     # Comprehensive benchmark suite & chart plotter
 │   └── hardware_benchmark_results.png # Generated comparison visualization
 │
+├── lab05_finetune_laya_snake/      # 🕹️ Lab 05: Fine-Tuning Laya on Nokia 3310 Snake AI
+│   ├── 01_generate_snake_dataset.py# Trajectory generator from heuristic expert
+│   ├── 02_train_laya_snake.py      # Multi-task supervised fine-tuning training loop
+│   ├── 03_play_snake_interactive.py# Live interactive retro gameplay CLI
+│   ├── 04_evaluate_snake.py        # 50-episode benchmark vs Random Policy & A*
+│   └── snake_benchmark_results.png # Policy performance & throughput charts
+│
 ├── common/                         # 🛠️ Shared Utilities
 │   ├── cube_engine.py              # 3x3 Rubik's cube simulator & Singmaster engine
+│   ├── snake_engine.py             # Nokia 3310 Snake simulator & ANSI visualizer
 │   ├── hardware_profile.py         # Apple Silicon & GPU hardware detection
 │   ├── mock_engine.py              # Live / Mock adapters for Laya and LLM models
 │   └── visualizer.py               # Rich terminal tables, ANSI nets & plotters
-└── tests/                          # 🧪 Unit Test Suite (10/10 Passing)
+└── tests/                          # 🧪 Unit Test Suite (14/14 Passing)
 ```
 
 ---
