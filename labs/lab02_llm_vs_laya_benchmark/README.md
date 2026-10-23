@@ -24,7 +24,7 @@ Welcome to Lab 02! This lab presents an empirical, head-to-head comparison betwe
 ## 🚀 Running the Benchmark
 
 ```bash
-python3 lab02_llm_vs_laya_benchmark/benchmark_comparison.py
+python3 labs/lab02_llm_vs_laya_benchmark/benchmark_comparison.py
 ```
 
-This will run the full test suite, print a structured comparison table in the console, and generate a visualization chart at `lab02_llm_vs_laya_benchmark/benchmark_results.png`.
+This will run the full test suite, print a structured comparison table in the console, and generate a visualization chart at `labs/lab02_llm_vs_laya_benchmark/benchmark_results.png`.

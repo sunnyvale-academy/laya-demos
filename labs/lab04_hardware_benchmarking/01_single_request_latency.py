@@ -11,7 +11,9 @@ import laya.presets as presets
 
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import print_header, print_metrics_table, get_hardware_profile, synchronize_device, create_laya_agent
 

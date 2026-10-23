@@ -14,12 +14,14 @@ import laya.presets as presets
 
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import print_header, print_metrics_table, get_hardware_profile, synchronize_device
 
 
-def plot_hardware_benchmark_chart(results: Dict[str, Any], output_path: str = "hardware_benchmark_results.png") -> str:
+def plot_hardware_benchmark_chart(results: Dict[str, Any], output_path: str = os.path.join(os.path.dirname(__file__), "hardware_benchmark_results.png")) -> str:
     """Generates a comprehensive 3-panel hardware performance visualization."""
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
     
@@ -84,7 +86,7 @@ def plot_hardware_benchmark_chart(results: Dict[str, Any], output_path: str = "h
     return output_path
 
 
-def run_full_hardware_benchmark(output_image_path: str = "lab04_hardware_benchmarking/hardware_benchmark_results.png"):
+def run_full_hardware_benchmark(output_image_path: str = os.path.join(os.path.dirname(__file__), "hardware_benchmark_results.png")):
     hw = get_hardware_profile()
     
     print_header(

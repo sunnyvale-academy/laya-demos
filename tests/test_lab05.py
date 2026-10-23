@@ -2,12 +2,20 @@ import pytest
 import os
 import torch
 from common import SnakeGame, Direction, get_snake_decision_questions
-from lab05_finetune_laya_snake.train_snake import (
-    SnakeFineTunedPolicy,
-    extract_features_from_sample,
-    ACTION_MAP,
-    REV_ACTION_MAP,
-)
+try:
+    from labs.lab05_finetune_laya_snake.train_snake import (
+        SnakeFineTunedPolicy,
+        extract_features_from_sample,
+        ACTION_MAP,
+        REV_ACTION_MAP,
+    )
+except ImportError:
+    from lab05_finetune_laya_snake.train_snake import (
+        SnakeFineTunedPolicy,
+        extract_features_from_sample,
+        ACTION_MAP,
+        REV_ACTION_MAP,
+    )
 
 
 def test_snake_game_environment():

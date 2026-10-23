@@ -13,6 +13,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 # Add root directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from common import create_laya_agent, print_header, print_metrics_table

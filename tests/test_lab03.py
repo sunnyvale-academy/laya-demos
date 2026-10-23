@@ -1,6 +1,9 @@
 import pytest
 from common.cube_engine import RubikCube, Color, Face
-from lab03_rubik_cube_solver.rubik_laya_agent import LayaRubikSolver
+try:
+    from labs.lab03_rubik_cube_solver.rubik_laya_agent import LayaRubikSolver
+except ImportError:
+    from lab03_rubik_cube_solver.rubik_laya_agent import LayaRubikSolver
 
 
 def test_rubik_cube_solved():

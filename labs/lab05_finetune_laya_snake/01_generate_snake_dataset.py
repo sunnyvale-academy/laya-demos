@@ -8,7 +8,9 @@ from typing import Dict, List, Any, Tuple
 
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import print_header, SnakeGame, Direction, get_snake_decision_questions
 
@@ -81,7 +83,7 @@ def generate_snake_dataset(num_games: int = 150, max_steps_per_game: int = 100, 
     return dataset
 
 
-def save_dataset_jsonl(dataset: List[Dict[str, Any]], filepath: str = "lab05_finetune_laya_snake/snake_dataset.jsonl") -> str:
+def save_dataset_jsonl(dataset: List[Dict[str, Any]], filepath: str = os.path.join(os.path.dirname(__file__), "snake_dataset.jsonl")) -> str:
     """Saves the dataset in JSONL format."""
     os.makedirs(os.path.dirname(os.path.abspath(filepath)), exist_ok=True)
     with open(filepath, "w") as f:

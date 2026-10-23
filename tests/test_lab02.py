@@ -1,6 +1,9 @@
 import pytest
 from common import MockLLMRunner, create_laya_agent
-from lab02_llm_vs_laya_benchmark.dataset_generator import get_benchmark_dataset
+try:
+    from labs.lab02_llm_vs_laya_benchmark.dataset_generator import get_benchmark_dataset
+except ImportError:
+    from lab02_llm_vs_laya_benchmark.dataset_generator import get_benchmark_dataset
 import laya.presets as presets
 
 

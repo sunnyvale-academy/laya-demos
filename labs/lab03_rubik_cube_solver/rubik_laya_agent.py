@@ -13,7 +13,9 @@ import time
 import heapq
 from typing import Any, Dict, List, Optional, Tuple
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.dirname(__file__))
 
 from common.cube_engine import RubikCube, ALL_MOVES, QUARTER_MOVES, MOVE_INVERSES
 from common.mock_engine import create_laya_agent

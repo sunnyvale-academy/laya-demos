@@ -11,11 +11,16 @@ import sys
 import os
 import time
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.dirname(__file__))
 
 from common.cube_engine import RubikCube
 from common.visualizer import print_header, print_metrics_table
-from rubik_laya_agent import LayaRubikSolver
+try:
+    from rubik_laya_agent import LayaRubikSolver
+except ImportError:
+    from labs.lab03_rubik_cube_solver.rubik_laya_agent import LayaRubikSolver
 
 
 def run_rubik_benchmark():

@@ -40,7 +40,7 @@ Laya modella il gioco di Snake come un problema di decisione discreto multi-test
 ## 📁 Struttura degli Script
 
 ```
-lab05_finetune_laya_snake/
+labs/lab05_finetune_laya_snake/
 ├── 01_generate_snake_dataset.py       # Simula partite esperte e genera il dataset di traiettorie
 ├── 02_train_laya_snake.py             # Training loop multi-task loss (CrossEntropy + BCE)
 ├── 03_play_snake_interactive.py       # Demo interattiva con visualizzatore retro Nokia 3310
@@ -57,29 +57,29 @@ lab05_finetune_laya_snake/
 ### 1. Generazione del Dataset di Traiettorie
 Genera 9.500+ decisioni supervisionate da simulazioni esperte:
 ```bash
-python3 lab05_finetune_laya_snake/01_generate_snake_dataset.py
+python3 labs/lab05_finetune_laya_snake/01_generate_snake_dataset.py
 ```
 
 ### 2. Fine-Tuning Multi-Task
 Addestra le teste decisionali su GPU / MPS o CPU:
 ```bash
-python3 lab05_finetune_laya_snake/02_train_laya_snake.py
+python3 labs/lab05_finetune_laya_snake/02_train_laya_snake.py
 ```
 
 ### 3. Gameplay Interattivo in Tempo Reale
 Guarda l'agente Laya giocare a Snake sul terminale in stile Nokia 3310:
 ```bash
 # Esegui a 12 FPS standard
-python3 lab05_finetune_laya_snake/03_play_snake_interactive.py 12
+python3 labs/lab05_finetune_laya_snake/03_play_snake_interactive.py 12
 
 # Esegui a 50 FPS turbo
-python3 lab05_finetune_laya_snake/03_play_snake_interactive.py 50
+python3 labs/lab05_finetune_laya_snake/03_play_snake_interactive.py 50
 ```
 
 ### 4. Valutazione e Benchmark
 Confronta accuratezza, mele mangiate e latenza rispetto a una baseline casuale e al risolutore A*:
 ```bash
-python3 lab05_finetune_laya_snake/04_evaluate_snake.py
+python3 labs/lab05_finetune_laya_snake/04_evaluate_snake.py
 ```
 
 ---

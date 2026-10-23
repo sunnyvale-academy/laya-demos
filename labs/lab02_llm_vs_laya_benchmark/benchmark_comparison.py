@@ -16,11 +16,16 @@ import json
 import numpy as np
 
 # Add root directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+sys.path.insert(0, os.path.dirname(__file__))
 
 from common import create_laya_agent, MockLLMRunner, print_header, print_metrics_table
 from common.visualizer import plot_benchmark_chart
-from dataset_generator import get_benchmark_dataset
+try:
+    from dataset_generator import get_benchmark_dataset
+except ImportError:
+    from labs.lab02_llm_vs_laya_benchmark.dataset_generator import get_benchmark_dataset
 import laya.presets as presets
 
 

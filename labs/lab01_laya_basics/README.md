@@ -33,8 +33,8 @@ Welcome to Lab 01! This lab teaches you the core principles, architecture, and d
 Run all scripts from the repository root:
 
 ```bash
-python3 lab01_laya_basics/01_system1_foundations.py
-python3 lab01_laya_basics/02_structured_schemas.py
-python3 lab01_laya_basics/03_calibrated_confidence.py
-python3 lab01_laya_basics/04_end_to_end_pipeline.py
+python3 labs/lab01_laya_basics/01_system1_foundations.py
+python3 labs/lab01_laya_basics/02_structured_schemas.py
+python3 labs/lab01_laya_basics/03_calibrated_confidence.py
+python3 labs/lab01_laya_basics/04_end_to_end_pipeline.py
 ```

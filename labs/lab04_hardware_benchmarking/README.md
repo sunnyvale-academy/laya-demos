@@ -31,28 +31,28 @@ Welcome to Lab 04! This lab conducts deep hardware performance profiling of the 
 Measures single-request decision latency (p50, p95, p99, mean, std) across CPU and MPS:
 
 ```bash
-python3 lab04_hardware_benchmarking/01_single_request_latency.py
+python3 labs/lab04_hardware_benchmarking/01_single_request_latency.py
 ```
 
 ### 2. `02_batch_throughput.py`
 Evaluates throughput scaling across batch sizes ($1, 4, 8, 16, 32, 64$):
 
 ```bash
-python3 lab04_hardware_benchmarking/02_batch_throughput.py
+python3 labs/lab04_hardware_benchmarking/02_batch_throughput.py
 ```
 
 ### 3. `03_question_scaling.py`
 Evaluates marginal latency scaling when adding multiple parallel question heads ($1, 2, 4, 8$ heads):
 
 ```bash
-python3 lab04_hardware_benchmarking/03_question_scaling.py
+python3 labs/lab04_hardware_benchmarking/03_question_scaling.py
 ```
 
 ### 4. `benchmark_cpu_vs_gpu.py` (Full Suite & Plotter)
-Runs all benchmarks and generates [`hardware_benchmark_results.png`](file:///Users/denismaggiorotto/Documents/Progetti/Sunnyvale/repos/laya-demos/lab04_hardware_benchmarking/hardware_benchmark_results.png):
+Runs all benchmarks and generates [`hardware_benchmark_results.png`](hardware_benchmark_results.png):
 
 ```bash
-python3 lab04_hardware_benchmarking/benchmark_cpu_vs_gpu.py
+python3 labs/lab04_hardware_benchmarking/benchmark_cpu_vs_gpu.py
 ```
 
 ---

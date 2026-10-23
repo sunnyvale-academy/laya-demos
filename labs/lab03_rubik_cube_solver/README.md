@@ -25,7 +25,7 @@ Watch the cube scramble and solve with full ANSI color terminal net rendering:
 
 ```bash
 # Solve with a 5-step scramble
-python3 lab03_rubik_cube_solver/rubik_interactive_demo.py 5
+python3 labs/lab03_rubik_cube_solver/rubik_interactive_demo.py 5
 ```
 
 ### 2. Search Speed Benchmark
@@ -33,5 +33,5 @@ python3 lab03_rubik_cube_solver/rubik_interactive_demo.py 5
 Compare Laya's node evaluation speed against theoretical autoregressive LLM lookahead:
 
 ```bash
-python3 lab03_rubik_cube_solver/rubik_benchmark.py
+python3 labs/lab03_rubik_cube_solver/rubik_benchmark.py
 ```

@@ -14,10 +14,15 @@ import torch
 
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import print_header, print_metrics_table, SnakeGame, Direction, get_hardware_profile
-from lab05_finetune_laya_snake.train_snake import SnakeFineTunedPolicy, extract_features_from_sample, REV_ACTION_MAP
+try:
+    from labs.lab05_finetune_laya_snake.train_snake import SnakeFineTunedPolicy, extract_features_from_sample, REV_ACTION_MAP
+except ImportError:
+    from train_snake import SnakeFineTunedPolicy, extract_features_from_sample, REV_ACTION_MAP
 
 
 def evaluate_policy(policy_name: str, model: Any = None, device: Any = None, num_episodes: int = 50, max_steps: int = 150) -> Dict[str, Any]:
@@ -112,7 +117,7 @@ def plot_snake_benchmark_chart(results: Dict[str, Any], output_path: str = "snak
     return output_path
 
 
-def run_snake_evaluation_suite(checkpoint_path: str = "lab05_finetune_laya_snake/snake_checkpoint.pt"):
+def run_snake_evaluation_suite(checkpoint_path: str = os.path.join(os.path.dirname(__file__), "snake_checkpoint.pt")):
     hw = get_hardware_profile()
     device_str = "mps" if hw["mps_available"] else ("cuda" if hw["cuda_available"] else "cpu")
     device = torch.device(device_str)
@@ -152,7 +157,7 @@ def run_snake_evaluation_suite(checkpoint_path: str = "lab05_finetune_laya_snake
 
     print_metrics_table(headers, rows, title="Snake Policy Benchmark Comparison")
 
-    img_path = plot_snake_benchmark_chart(results, output_path="lab05_finetune_laya_snake/snake_benchmark_results.png")
+    img_path = plot_snake_benchmark_chart(results, output_path=os.path.join(os.path.dirname(__file__), "snake_benchmark_results.png"))
     print(f"\n[4] Benchmark comparison chart saved to: {os.path.abspath(img_path)}")
 
     return results

@@ -8,14 +8,19 @@ from typing import Dict, Any, Optional
 import torch
 
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import print_header, SnakeGame, Direction, get_snake_decision_questions, get_hardware_profile
-from lab05_finetune_laya_snake.train_snake import SnakeFineTunedPolicy, extract_features_from_sample, REV_ACTION_MAP
+try:
+    from labs.lab05_finetune_laya_snake.train_snake import SnakeFineTunedPolicy, extract_features_from_sample, REV_ACTION_MAP
+except ImportError:
+    from train_snake import SnakeFineTunedPolicy, extract_features_from_sample, REV_ACTION_MAP
 
 
 def play_snake_with_finetuned_laya(
-    checkpoint_path: str = "lab05_finetune_laya_snake/snake_checkpoint.pt",
+    checkpoint_path: str = os.path.join(os.path.dirname(__file__), "snake_checkpoint.pt"),
     max_steps: int = 120,
     fps: float = 8.0,
     seed: Optional[int] = 123
@@ -31,7 +36,10 @@ def play_snake_with_finetuned_laya(
 
     if not os.path.exists(checkpoint_path):
         print(f"[Error: Checkpoint {checkpoint_path} not found. Running training first...]")
-        from lab05_finetune_laya_snake.train_snake import train_snake_model
+        try:
+            from labs.lab05_finetune_laya_snake.train_snake import train_snake_model
+        except ImportError:
+            from train_snake import train_snake_model
         train_snake_model(save_path=checkpoint_path)
 
     # Load fine-tuned model
