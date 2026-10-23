@@ -40,6 +40,9 @@ laya-demos/
 │       └── snake_benchmark_results.png# Policy performance & throughput charts
 │
 ├── exercises/                        # 📝 Hands-on Exercises & Practice Challenges
+│   └── exercise01_spam_test/         # 🛡️ Exercise 01: Spam Test (Email Security & Hybrid Reasoning)
+│       ├── spam_detector.py          # Hands-on script: Scenarios, System 1, System 2 & Sensitivity
+│       └── README.md                 # Step-by-step guide and discussion questions
 ├── common/                           # 🛠️ Shared Utilities
 │   ├── cube_engine.py                # 3x3 Rubik's cube simulator & Singmaster engine
 │   ├── snake_engine.py               # Nokia 3310 Snake simulator & ANSI visualizer
@@ -163,6 +166,22 @@ python3 labs/lab05_finetune_laya_snake/03_play_snake_interactive.py 15
 
 # 4. Run policy evaluation benchmark
 python3 labs/lab05_finetune_laya_snake/04_evaluate_snake.py
+```
+
+---
+
+## 📝 Hands-on Exercises Breakdown
+
+### [Exercise 01: Teaching AI to Make Decisions with LAYA (Spam Test)](exercises/exercise01_spam_test/README.md)
+A beginner-friendly hands-on exercise exploring how a System 1 decision engine handles binary choices (`ALLOW` vs `BLOCK`) and complements System 2 reasoning models:
+* **Step 1 — Scenarios**: Benchmark 5 email scenarios with sender reputation, suspicious links, and urgent language.
+* **Step 2 — Typed Decision**: Binary choice evaluation in a single encoder forward pass (~30ms).
+* **Step 3 — Performance & Calibration**: Evaluating classification accuracy and identifying low-confidence edge cases (Email E).
+* **Step 4 — System 2 Escalation**: Detailed Chain-of-Thought reasoning for ambiguous emails and hybrid cost/latency trade-offs.
+* **Bonus — Attribute Sensitivity**: Observing how changing a single characteristic flips the decision.
+
+```bash
+python3 exercises/exercise01_spam_test/spam_detector.py
 ```
 
 ---

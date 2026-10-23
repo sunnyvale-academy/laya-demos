@@ -5,7 +5,10 @@ import os
 import platform
 import subprocess
 from typing import Dict, Any, Optional
-import torch
+try:
+    import torch
+except (ImportError, Exception):
+    torch = None
 
 
 def get_hardware_profile() -> Dict[str, Any]:
@@ -33,9 +36,15 @@ def get_hardware_profile() -> Dict[str, Any]:
     cpu_count = os.cpu_count() or 1
 
     # GPU / MPS / CUDA detection
-    mps_available = hasattr(torch.backends, "mps") and torch.backends.mps.is_available()
-    mps_built = hasattr(torch.backends, "mps") and torch.backends.mps.is_built()
-    cuda_available = torch.cuda.is_available()
+    mps_available = False
+    mps_built = False
+    cuda_available = False
+    torch_version = "N/A"
+    if torch is not None:
+        mps_available = hasattr(torch.backends, "mps") and torch.backends.mps.is_available()
+        mps_built = hasattr(torch.backends, "mps") and torch.backends.mps.is_built()
+        cuda_available = torch.cuda.is_available()
+        torch_version = getattr(torch, "__version__", "N/A")
 
     gpu_name = "None"
     gpu_type = "None"
@@ -57,7 +66,7 @@ def get_hardware_profile() -> Dict[str, Any]:
         "cuda_available": cuda_available,
         "gpu_type": gpu_type,
         "gpu_name": gpu_name,
-        "torch_version": torch.__version__,
+        "torch_version": torch_version,
     }
 
 

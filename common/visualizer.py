@@ -3,13 +3,9 @@
 from __future__ import annotations
 import os
 from typing import Any, Dict, List, Optional
-from tabulate import tabulate
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 
 console = Console()
 
@@ -48,6 +44,10 @@ def print_cube_state(cube: Any, title: str = "Cube State", step: Optional[int] =
 
 def plot_benchmark_chart(metrics: Dict[str, Any], output_path: str = "benchmark_results.png") -> str:
     """Generates a high-quality comparison chart comparing Laya vs Generative LLM."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
     
     fig, axes = plt.subplots(1, 3, figsize=(15, 4.5))

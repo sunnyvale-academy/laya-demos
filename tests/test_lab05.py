@@ -1,6 +1,13 @@
 import pytest
 import os
-import torch
+try:
+    import torch
+except (ImportError, Exception):
+    torch = None
+
+if torch is None:
+    pytest.skip("PyTorch not installed or incompatible C extensions", allow_module_level=True)
+
 from common import SnakeGame, Direction, get_snake_decision_questions
 try:
     from labs.lab05_finetune_laya_snake.train_snake import (

@@ -1,5 +1,12 @@
 import pytest
-import torch
+try:
+    import torch
+except (ImportError, Exception):
+    torch = None
+
+if torch is None:
+    pytest.skip("PyTorch not installed or incompatible C extensions", allow_module_level=True)
+
 from common import get_hardware_profile, synchronize_device
 
 
